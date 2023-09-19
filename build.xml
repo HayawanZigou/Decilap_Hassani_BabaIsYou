@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project default="main" name="Decilap_Hassani_BabaIsYou">
+    <!--define folder properties-->
+    <property name="dir.buildfile" value="."/>
+    <property name="dir.workspace" value="${dir.buildfile}/.."/>
+    <property name="dir.jarfile" value="${dir.buildfile}"/>
+    <target name="jar" depends="compile">
+        <jar destfile="${dir.jarfile}/baba.jar" filesetmanifest="mergewithoutmain">
+            <manifest>
+                <attribute name="Main-Class" value="fr.umlv.baba.main.Main"/>
+                <attribute name="Class-Path" value="."/>
+            </manifest>
+            <fileset dir="${dir.jarfile}/classes"/>
+            <zipfileset excludes="META-INF/*.SF" src="${dir.jarfile}/lib/zen5.jar"/>
+        </jar>
+    </target>
+    <target name="compile" depends="clean" description="classes compilation">
+    	<javac srcdir= "src" destdir="classes" >
+	 <classpath>
+        <pathelement path="lib/zen5.jar"/>
+    	</classpath>
+    	</javac>
+   </target>
+   <target name="javadoc" depends="compile">
+      <javadoc sourcepath="src"
+                destdir="docs/doc" >
+         <fileset dir="src" defaultexcludes="yes">
+         <include name="**" />
+         </fileset>
+	 <classpath>
+        <pathelement path="lib/zen5.jar"/>
+    	</classpath>
+       </javadoc>
+    </target> 
+    <target name="clean">
+    	<delete dir="docs/doc" />
+    	<delete file="baba.jar" />
+    	<delete dir="classes/fr" />
+    </target>
+    <target name="main" depends="compile, jar, javadoc">
+    </target>
+	
+</project>
