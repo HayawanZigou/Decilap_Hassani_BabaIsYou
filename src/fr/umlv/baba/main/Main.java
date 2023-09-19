@@ -1,24 +1,15 @@
 package fr.umlv.baba.main;
 
-import java.awt.Color;
-import java.awt.geom.Rectangle2D;
-
-import fr.umlv.baba.Breaker;
-import fr.umlv.baba.Defeat;
-import fr.umlv.baba.Hot;
-import fr.umlv.baba.Level;
-import fr.umlv.baba.Melt;
-import fr.umlv.baba.Push;
-import fr.umlv.baba.Sink;
-import fr.umlv.baba.Stop;
-import fr.umlv.baba.Win;
-import fr.umlv.baba.You;
+import fr.umlv.baba.*;
 import fr.umlv.baba.enumerate.EnumProperties;
 import fr.umlv.zen5.Application;
 import fr.umlv.zen5.Event;
-import fr.umlv.zen5.ScreenInfo;
 import fr.umlv.zen5.Event.Action;
 import fr.umlv.zen5.KeyboardKey;
+import fr.umlv.zen5.ScreenInfo;
+
+import java.awt.*;
+import java.awt.geom.Rectangle2D;
 
 /**
  * @author Decilap
@@ -46,7 +37,7 @@ public class Main {
 			var level_number = 0;
 			level = new Level(width, height, paths[level_number]);
 
-			if (args.length >= 2 && args[0].equals("--level") && args[2].equals("--execute"))
+			if (args.length >= 3 && args[0].equals("--level") && args[2].equals("--execute"))
 				level.executeCommand(args);
 
 			var you = (You) level.properties.get(EnumProperties.YOU);
